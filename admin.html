@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Appointments | Al-Rehmat Clinic</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="is-checking">
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="logo" aria-label="Al-Rehmat Clinic, open the website">
+        <span class="logo__name">AL-REHMAT<span class="logo__moon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.82 2.24A10 10 0 1 0 21.76 14.18A8.5 8.5 0 0 1 9.82 2.24Z"/></svg></span></span>
+        <span class="logo__tag">CLINIC</span>
+      </a>
+
+      <div class="topbar__right">
+        <span class="topbar__user" id="userEmail"></span>
+        <button type="button" class="btn btn--outline btn--small" id="signOutBtn">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin container">
+
+    <div class="admin__head">
+      <div>
+        <h1 class="admin__title">Appointments</h1>
+        <p class="result-count" id="resultCount" role="status"></p>
+      </div>
+      <button type="button" class="btn btn--outline btn--small" id="refreshBtn">Refresh</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="tabs" role="group" aria-label="Filter appointments">
+        <button type="button" data-tab="today" aria-pressed="false">Today <span class="tabs__count">0</span></button>
+        <button type="button" data-tab="week" aria-pressed="false">In 7 Days <span class="tabs__count">0</span></button>
+        <button type="button" data-tab="all" aria-pressed="true">All <span class="tabs__count">0</span></button>
+        <button type="button" data-tab="pending" aria-pressed="false">Pending <span class="tabs__count">0</span></button>
+        <button type="button" data-tab="confirmed" aria-pressed="false">Confirmed <span class="tabs__count">0</span></button>
+        <button type="button" data-tab="completed" aria-pressed="false">Completed <span class="tabs__count">0</span></button>
+      </div>
+
+      <input type="search" class="toolbar__search" id="searchInput" placeholder="Search name, phone, email or service" aria-label="Search appointments">
+    </div>
+
+    <ul class="list" id="list">
+      <li class="empty">Loading appointments…</li>
+    </ul>
+
+    <div class="more">
+      <button type="button" class="btn btn--outline" id="moreBtn" hidden>Show more</button>
+    </div>
+
+  </main>
+
+  <!-- Popup used for confirm, cancel and delete -->
+  <dialog class="dialog" id="dialog" aria-labelledby="dialogTitle">
+    <div class="dialog__box">
+      <h2 class="dialog__title" id="dialogTitle"></h2>
+      <p class="dialog__summary" id="dialogSummary"></p>
+      <p class="dialog__text" id="dialogText"></p>
+
+      <a class="btn btn--outline dialog__msg" id="dialogMessage" target="_blank" rel="noopener noreferrer" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <span id="dialogMessageLabel"></span>
+      </a>
+
+      <div class="dialog__actions">
+        <button type="button" class="btn btn--outline" id="dialogCancel">Back</button>
+        <button type="button" class="btn btn--solid" id="dialogConfirm">Confirm</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
